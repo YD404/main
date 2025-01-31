@@ -1,0 +1,68 @@
+/* ベーススタイルのリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 全体のフォント設定 */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* ヘッダーのスタイル */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* メインコンテンツのスタイル */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* リンクカテゴリのスタイル */
+.link-category {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* リンクリストのスタイル */
+.link-category ul {
+    list-style-type: none;
+}
+
+.link-category li {
+    margin-bottom: 10px;
+}
+
+/* リンクのスタイル */
+.link-category a {
+    text-decoration: none;
+    color: #1a73e8;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link-category a:hover {
+    color: #0c48db;
+}
+
+/* フッターのスタイル */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
