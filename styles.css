@@ -3,66 +3,167 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* 全体のフォント設定 */
-body {
-    font-family: 'Arial', sans-serif;
+  }
+  
+  /* デフォルト（ライトテーマ） */
+  :root {
+    --bg-color: #e2daf8;
+    --text-color: #000;
+    --header-bg: #b7a2ee;
+    --header-text: #e2daf8;
+    --li-color:#fff;
+    --card-bg: #fff;
+    --card-border: #333;
+    --card-hover: #1e0955;
+    --link-hover: #1e0955;
+  }
+  
+  /* ダークテーマ */
+  [data-theme="dark"] {
+    --bg-color: #1e0955;
+    --text-color: #fff;
+    --header-bg: #333;
+    --header-text: #e2daf8;
+    --li-color:#333;
+    --card-bg: #111;
+    --card-border: #fff;
+    --card-hover: #e2e2e2;
+    --link-hover: #e2e2e2;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Noto Sans JP', 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #e2daf8;
-    color: #eee;
-    padding: 20px;
-}
-
-/* ヘッダーのスタイル */
-header {
-    background-color: #111;
-    color: #e2daf8;
+    padding: 0px;
+  }
+  
+  header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
     padding: 10px 0;
     text-align: center;
     margin-bottom: 20px;
-}
-
-/* メインコンテンツのスタイル */
-main {
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+  }
+  
+  #theme-toggle {
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--card-border);
+    color: var(--card-bg);
+    font-weight: bold;
+  }
+  
+  #theme-toggle:hover {
+    background-color: var(--card-hover);
+    color: var(--card-bg);
+  }
+  
+  main {
     max-width: 800px;
     margin: 0 auto;
-}
-
-/* リンクカテゴリのスタイル */
-.link-category {
-    background-color: #1e0955;
+  }
+  
+  .link-category {
+    background-color: var(--card-bg);
     padding: 15px;
     margin-bottom: 20px;
-    border-radius: 5px;
+    border-radius: 32px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* リンクリストのスタイル */
-.link-category ul {
-    list-style-type: none;
-}
-
-.link-category li {
-    margin-bottom: 10px;
-}
-
-/* リンクのスタイル */
-.link-category a {
+  }
+  
+  .link-category ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .link-category li {
+    width: calc(50% - 16px);
+    margin: 8px;
+    border: 1px solid var(--card-border);
+    background-color: var(--li-color);
+    border-radius: 16px;
+    outline-offset: 2px;
+  }
+  
+  .link-category li:hover {
+    outline: 4px solid var(--card-hover);
+    border: 1px solid rgba(53, 53, 53, 0.0);
+    font-weight: 700;
+  }
+  
+  .link-category a {
+    display: flex;
+    margin: 16px;
+    align-items: center;
     text-decoration: none;
-    color: #e2daf8;
-    font-weight: bold;
+    color: var(--link-hover);
     transition: color 0.3s ease;
-}
-
-.link-category a:hover {
-    color: #b7a2ee;
-}
-
-/* フッターのスタイル */
-footer {
+  }
+  
+  .link-category li a span {
+    margin: 16px;
+  }
+  
+  footer {
     text-align: center;
     margin-top: 20px;
     font-size: 0.9em;
-    color: #b7a2ee;
-}
+    color: var(--header-bg);
+  }
+  
+  .svg-icon {
+    width: 4rem;
+    height: 4rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .svg-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .svg-link:hover {
+    text-decoration: underline;
+  }
+  
+  .icon:hover,
+  img:hover {
+    background-color: #000;
+  }
+  
+  .fa-brands {
+    font-size: 4rem;
+    color: var(--card-border);
+  }
+  
+  .fa-youtube {
+    color: #ff0000;
+  }
+  
+  .card-member-small .fa-brands {
+    font-size: 1.25rem;
+  }
+  
+  /* メディアクエリ：スマホ表示での調整 */
+  @media (max-width: 480px) {
+    .link-category li a span {
+      display: none;
+    }
+    .link-category li a span.text-only {
+      display: block;
+    }
+  }
+  
+  /* ダークテーマの詳細調整 */
