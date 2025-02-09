@@ -1,3 +1,4 @@
+/// ライトダークテーマ切り替え
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("theme-toggle");
     const currentTheme = localStorage.getItem("theme") || "light";
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+/// フッダー
 document.addEventListener("DOMContentLoaded", () => {
     fetch("footer.html")
       .then(response => response.text())
@@ -23,8 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
 
+  /// カード読み込みアニメーション
   document.addEventListener('DOMContentLoaded', () => {
-    const historyItems = document.querySelectorAll('.link-category');
+    const historyItems = document.querySelectorAll('.default-category');
   
     historyItems.forEach((item, index) => {
       item.style.opacity = 0;
@@ -38,3 +41,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }, delay);
     });
   });
+
+
+
+///age 年齢計算
+  // 生年月日を指定（YYYY, MM, DD形式）
+  const birthDate = new Date(2003, 10, 29); // 1990年1月1日生まれの場合
+
+  // 現在の日付を取得
+  const today = new Date();
+
+  // 年齢を計算
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  // 今年の誕生日を迎えていない場合は年齢を1つ減らす
+  const monthDifference = today.getMonth() - birthDate.getMonth();
+  if (
+    monthDifference < 0 ||
+    (monthDifference === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+
+  // 計算した年齢を表示
+  document.getElementById("age").textContent = age;

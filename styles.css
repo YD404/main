@@ -7,12 +7,13 @@
   
   /* デフォルト（ライトテーマ） */
   :root {
-    --bg-color: #e2daf8;
+    --bg-color: #DED5F7;
+    --bg-color-bottom: #e2daf8;
     --text-color: #000;
     --header-bg: #b7a2ee;
     --header-text: #e2daf8;
-    --li-color:#fff;
-    --card-bg: #fff;
+    --li-color: rgba(255, 255, 255, 0.65);
+    --card-bg: rgba(255, 255, 255, 0.65);
     --card-border: #333;
     --card-hover: #1e0955;
     --link-hover: #1e0955;
@@ -21,24 +22,36 @@
   /* ダークテーマ */
   [data-theme="dark"] {
     --bg-color: #1e0955;
+    --bg-color-bottom: #2A0D73;
     --text-color: #fff;
-    --header-bg: #333;
+    --header-bg: rgba(100,100,100,0.65);
     --header-text: #e2daf8;
-    --li-color:#333;
-    --card-bg: #111;
+    --li-color: rgba(100,100,100,0.65);
+    --card-bg:  rgba(0, 0, 0, 0.65);
     --card-border: #fff;
     --card-hover: #e2e2e2;
     --link-hover: #e2e2e2;
   }
   
   body {
-    background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'Noto Sans JP', 'Arial', sans-serif;
     line-height: 1.6;
     padding: 0px;
   }
   
+
+body:after {/*擬似要素をつくる*/
+  position: fixed;/*固定配置*/
+  top: 0; left: 0;/*左上に固定*/
+  width: 100%;
+  height: 100%;/*画面全体を覆う*/
+  content: "";
+  background: var(--bg-color);
+  background:radial-gradient(var(--bg-color-bottom) ,var(--bg-color) );
+  z-index: -1;
+}
+
   header {
     background-color: var(--header-bg);
     color: var(--header-text);
@@ -48,7 +61,7 @@
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
   }
-  
+
   #theme-toggle {
     margin-top: 10px;
     padding: 8px 16px;
@@ -59,48 +72,78 @@
     color: var(--card-bg);
     font-weight: bold;
   }
-  
+
   #theme-toggle:hover {
     background-color: var(--card-hover);
     color: var(--card-bg);
   }
-  
+
   main {
-    max-width: 800px;
+    /* min-width: 75%; */
+    display: flex;
+    flex-wrap: wrap; /* 画面幅が足りない場合に折り返し */
+    justify-content: center;
+    gap: 2rem; /* セクション間の余白 */
     margin: 0 auto;
+    padding: 1rem 1rem;
   }
-  
-  .link-category {
-    background-color: var(--card-bg);
+
+  /*
+  ◆コンテナ要素◆
+  */
+  .default-category {
+    max-width: 800px;
+    background-color:var(--card-bg); /* 半透明背景 */
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 32px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .link-category ul {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    
+    /* glassmorphism効果 */
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%); /* Safari対応 */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    background-image: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.05)
+    );
+    
+    /* 変数を使う場合のフォールバック */
+    @supports not (backdrop-filter: blur()) {
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+}
+
+  .default-category ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
   }
   
-  .link-category li {
+  .default-category li {
     width: calc(50% - 16px);
     margin: 8px;
     border: 1px solid var(--card-border);
     background-color: var(--li-color);
     border-radius: 16px;
     outline-offset: 2px;
+    max-width: 400px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;     /* 縦方向中央 */
   }
   
-  .link-category li:hover {
+  .default-category li:hover {
     outline: 4px solid var(--card-hover);
     border: 1px solid rgba(53, 53, 53, 0.0);
     font-weight: 700;
   }
   
-  .link-category a {
+  .default-category a {
     display: flex;
     margin: 16px;
     align-items: center;
@@ -109,24 +152,66 @@
     transition: color 0.3s ease;
   }
   
-  .link-category li a span {
+  .default-category li a span {
     margin: 16px;
   }
   
+  /* メディアクエリ：スマホ表示での調整 */
+  @media (max-width: 480px) {
+    .default-category li a span {
+      display: none;
+    }
+    .default-category li a span.text-only {
+      display: block;
+    }
+  }
+
+  table {
+  }
+    
+  th,
+  td {
+      padding:8px;
+      vertical-align: top;
+  }
+  
+  th {
+      line-height: 1.6;
+      text-align: left;
+  }
+
+.default-text{
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.icon{
+  object-fit: contain; /* 比率を維持 */
+  display: block;
+  display: flex;
+  margin: 16px;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 16px;
+}
+  
+/*
+◆フッター◆
+*/
   footer {
     text-align: center;
     margin-top: 20px;
     font-size: 0.9em;
     color: var(--header-bg);
   }
-  
+
   .svg-icon {
     width: 4rem;
     height: 4rem;
     display: inline-block;
     vertical-align: middle;
   }
-  
+
+/* アイコン */
   .svg-link {
     display: inline-flex;
     align-items: center;
@@ -155,15 +240,3 @@
   .card-member-small .fa-brands {
     font-size: 1.25rem;
   }
-  
-  /* メディアクエリ：スマホ表示での調整 */
-  @media (max-width: 480px) {
-    .link-category li a span {
-      display: none;
-    }
-    .link-category li a span.text-only {
-      display: block;
-    }
-  }
-  
-  /* ダークテーマの詳細調整 */
