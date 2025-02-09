@@ -132,7 +132,7 @@ body:after {/*擬似要素をつくる*/
     border-radius: 16px;
     outline-offset: 2px;
     max-width: 400px;
-    min-width: 300px;
+    min-width: 160px;
     display: flex;
     align-items: center;     /* 縦方向中央 */
   }
