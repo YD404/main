@@ -228,7 +228,7 @@ body:after {/*擬似要素をつくる*/
     background-color: #000;
   }
   
-  .fa-brands {
+  .fa-brands,.fa-solid {
     font-size: 4rem;
     color: var(--card-border);
   }
