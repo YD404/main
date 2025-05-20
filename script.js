@@ -65,3 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 計算した年齢を表示
   document.getElementById("age").textContent = age;
+
+
+  

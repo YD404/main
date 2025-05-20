@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>年表</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>活動年表</h1>
+    <button id="theme-toggle">テーマ切替</button>
+  </header>
+
+  <main>
+
+    <section class="default-category">
+        <h2>活動年表</h2>
+        <div class="timeline"></div>
+      </section>
+      
+    <!-- 続きがある場合、同様の構造でセクションを追加 -->
+  </main>
+
+  <footer>
+    &copy; 2025 活動年表
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById("theme-toggle");
+    toggleButton.addEventListener("click", () => {
+      const html = document.documentElement;
+      html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="timeline.js"></script>
+
+</body>
+</html>

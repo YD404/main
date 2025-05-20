@@ -117,25 +117,39 @@ body:after {/*擬似要素をつくる*/
     }
 }
 
-  .default-category ul {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
+/*--- list container ---*//* --- ここから上記 ①② を適用 --- */
+.default-category{
+  width:100%;
+  flex:0 0 100%;
+  max-width:800px;
+  /* 既存のガラス風装飾はそのまま */
+}
+.default-category ul{
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* 2 列固定 */
+  gap: 16px;                        /* 要素間の余白 */
+  padding: 0;
+  margin: 0;
+}
+
+/*--- list item ---*/
+.default-category li{
+  background: var(--li-color);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/*--- モバイル 1 列 ---*/
+@media (max-width: 480px){
+  .default-category ul{
+    grid-template-columns: 1fr;
   }
-  
-  .default-category li {
-    width: calc(50% - 16px);
-    margin: 8px;
-    border: 1px solid var(--card-border);
-    background-color: var(--li-color);
-    border-radius: 16px;
-    outline-offset: 2px;
-    max-width: 400px;
-    min-width: 160px;
-    display: flex;
-    align-items: center;     /* 縦方向中央 */
-  }
+}
+
   
   .default-category li:hover {
     outline: 4px solid var(--card-hover);
@@ -156,15 +170,23 @@ body:after {/*擬似要素をつくる*/
     margin: 16px;
   }
   
-  /* メディアクエリ：スマホ表示での調整 */
-  @media (max-width: 480px) {
-    .default-category li a span {
-      display: none;
+  @media (max-width: 600px) {
+    /* アイコン要素を隠す */
+
+    .default-category li{
+      padding: 2px 2px;
     }
-    .default-category li a span.text-only {
+    .default-category li a{
+
+    }
+  
+    /* テキストを中央寄せ */
+    .default-category li a span {
       display: block;
+      text-align: center;
     }
   }
+  
 
   table {
   }
@@ -240,3 +262,100 @@ body:after {/*擬似要素をつくる*/
   .card-member-small .fa-brands {
     font-size: 1.25rem;
   }
+
+
+
+
+/* ――――― Timeline Container ――――― */
+.timeline {
+  position: relative;
+  margin: 2rem auto;
+  padding: 2rem 0;
+  max-width: 800px;
+}
+.timeline::before {
+  /* 中央の縦線 */
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 30px;
+  width: 4px;
+  background: var(--card-border);
+  z-index: 1; /* 下層 */
+}
+
+/* ――――― 共通：イベントアイテム ――――― */
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  /* デフォルトは年レベルのインデント */
+  padding-left: 60px;
+}
+/* ① まず、全ての .timeline-item の丸（疑似要素）を無効化 */
+.timeline-item::before {
+  content: none;
+}
+
+/* ② 年レベルだけに丸を再定義 */
+.timeline-item.year {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 60px;  /* 年見出しのインデント */
+}
+.timeline-item.year::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 0.5em;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 4px solid var(--card-border);
+  border-radius: 50%;
+  z-index: 2;
+}
+.timeline-item.year > h3 {
+  margin: 0;
+  font-size: 1.3em;
+  color: var(--header-text);
+}
+
+
+/* ――――― 月レベル ――――― */
+.timeline-item.month {
+  padding-left: 90px;  /* 少し左寄せを深く */
+}
+.timeline-item.month::before {
+  /* 丸を少し小さく */
+  width: 12px;
+  height: 12px;
+  border-width: 3px;
+  top: 0.6em;
+}
+.timeline-item.month > h4 {
+  font-size: 1.1em;
+  color: var(--card-border);
+  margin: 0;
+}
+
+/* ――――― 日レベル ――――― */
+.timeline-item.day {
+  padding-left: 120px; /* さらに深く */
+}
+.timeline-item.day::before {
+  /* 丸をさらに小さく */
+  width: 8px;
+  height: 8px;
+  border-width: 2px;
+  top: 0.6em;
+}
+.timeline-item.day > h5 {
+  font-size: 1em;
+  color: var(--link-hover);
+  margin: 0;
+}
+.timeline-item.day > p {
+  margin: 0.25em 0 0;
+  line-height: 1.6;
+}
