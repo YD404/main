@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>年表</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header>
     <h1>活動年表</h1>
-    <button id="theme-toggle">テーマ切替</button>
   </header>
 
   <main>
 
     <section class="default-category">
-        <h2>活動年表</h2>
-        <div class="timeline"></div>
-      </section>
-      
-    <!-- 続きがある場合、同様の構造でセクションを追加 -->
+      <h2>活動年表</h2>
+      <div class="timeline"></div>
+    </section>
+
   </main>
 
-  <footer>
-    &copy; 2025 活動年表
-  </footer>
 
+  <footer>
+    <button id="theme-toggle"></button>
+    <p>&copy; 2025 404_YD</p>
+  </footer>
+  <script src="script.js"></script>
   <script>
     const toggleButton = document.getElementById("theme-toggle");
     toggleButton.addEventListener("click", () => {
@@ -33,7 +36,10 @@
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script src="timeline.js"></script>
+  <script src="timeline.js"></script>
 
 </body>
+
+</body>
+
 </html>

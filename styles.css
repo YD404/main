@@ -266,6 +266,7 @@ body:after {/*擬似要素をつくる*/
 
 
 
+/* styles.css の一部 */
 /* ――――― Timeline Container ――――― */
 .timeline {
   position: relative;
@@ -279,34 +280,31 @@ body:after {/*擬似要素をつくる*/
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 30px;
+  left: 30px; /* 固定値 */
   width: 4px;
   background: var(--card-border);
-  z-index: 1; /* 下層 */
+  z-index: 1; 
 }
 
 /* ――――― 共通：イベントアイテム ――――― */
 .timeline-item {
   position: relative;
   margin-bottom: 1.5rem;
-  /* デフォルトは年レベルのインデント */
-  padding-left: 60px;
+  padding-left: 60px; /* 固定値 */
 }
-/* ① まず、全ての .timeline-item の丸（疑似要素）を無効化 */
 .timeline-item::before {
   content: none;
 }
 
-/* ② 年レベルだけに丸を再定義 */
 .timeline-item.year {
   position: relative;
   margin-bottom: 2rem;
-  padding-left: 60px;  /* 年見出しのインデント */
+  padding-left: 60px;  /* 固定値 */
 }
 .timeline-item.year::before {
   content: "";
   position: absolute;
-  left: 22px;
+  left: 22px; /* 固定値 */
   top: 0.5em;
   width: 16px;
   height: 16px;
@@ -321,13 +319,11 @@ body:after {/*擬似要素をつくる*/
   color: var(--header-text);
 }
 
-
 /* ――――― 月レベル ――――― */
 .timeline-item.month {
-  padding-left: 90px;  /* 少し左寄せを深く */
+  padding-left: 90px;  /* 固定値 */
 }
 .timeline-item.month::before {
-  /* 丸を少し小さく */
   width: 12px;
   height: 12px;
   border-width: 3px;
@@ -341,10 +337,9 @@ body:after {/*擬似要素をつくる*/
 
 /* ――――― 日レベル ――――― */
 .timeline-item.day {
-  padding-left: 120px; /* さらに深く */
+  padding-left: 120px; /* 固定値 */
 }
 .timeline-item.day::before {
-  /* 丸をさらに小さく */
   width: 8px;
   height: 8px;
   border-width: 2px;
