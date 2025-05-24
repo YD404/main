@@ -286,6 +286,14 @@ body:after {/*擬似要素をつくる*/
   z-index: 1; 
 }
 
+/* タイムライン中のリンクはインライン要素に */
+.timeline a {
+  display: inline;       /* または inline-block */
+  white-space: nowrap;   /* 改行禁止 */
+  margin: 0;             /* 必要に応じて調整 */
+  background-color: #333
+}
+
 /* ――――― 共通：イベントアイテム ――――― */
 .timeline-item {
   position: relative;
@@ -313,10 +321,27 @@ body:after {/*擬似要素をつくる*/
   border-radius: 50%;
   z-index: 2;
 }
+/* 年見出しをクリック可能に見せる */
 .timeline-item.year > h3 {
-  margin: 0;
-  font-size: 1.3em;
-  color: var(--header-text);
+  cursor: pointer;            /* マウスポインタを指マークに */
+  position: relative;         /* 疑似要素用に */
+}
+
+/* ホバー時に下線を付与 */
+.timeline-item.year > h3:hover {
+  text-decoration: underline;
+}
+
+/* 疑似要素で矢印アイコンを追加 */
+.timeline-item.year > h3::after {
+  content: "▸";               /* ▶ の文字を表示 */
+  margin-left: 0.5em;
+  transition: transform 0.3s ease;
+}
+
+/* 折りたたみ状態を CSS クラスで制御 */
+.timeline-item.year.expanded > h3::after {
+  transform: rotate(90deg);   /* ▶ を ▼ に回転 */
 }
 
 /* ――――― 月レベル ――――― */
