@@ -17,6 +17,7 @@
     --card-border: #333;
     --card-hover: #1e0955;
     --link-hover: #1e0955;
+    --link-bg:#e2daf8;
   }
   
   /* ダークテーマ */
@@ -31,6 +32,7 @@
     --card-border: #fff;
     --card-hover: #e2e2e2;
     --link-hover: #e2e2e2;
+    --link-bg:#2A0D73;
   }
   
   body {
@@ -266,14 +268,35 @@ body:after {/*擬似要素をつくる*/
 
 
 
-/* styles.css の一部 */
 /* ――――― Timeline Container ――――― */
+/* timeline をデフォルトで非表示に */
+.default-category .timeline {
+  display: none;
+}
+
+/* open クラスが付いたときだけ表示 */
+.default-category.open .timeline {
+  display: block;
+}
+
+/* 年見出しをクリック可能に見せる */
+.default-category h2 {
+  cursor: pointer;
+}
+
 .timeline {
   position: relative;
   margin: 2rem auto;
   padding: 2rem 0;
-  max-width: 800px;
+  width: 100%;
 }
+.timeline .default-category {
+  width: 90vw;           /* ビューポート幅の90% */
+  max-width: 800px;      /* お好みで最大幅を設定（任意） */
+  margin: 0 auto 1rem;   /* 上下に余白を置き、左右中央寄せ */
+  box-sizing: border-box;
+}
+
 .timeline::before {
   /* 中央の縦線 */
   content: "";
@@ -291,7 +314,8 @@ body:after {/*擬似要素をつくる*/
   display: inline;       /* または inline-block */
   white-space: nowrap;   /* 改行禁止 */
   margin: 0;             /* 必要に応じて調整 */
-  background-color: #333
+  background-color: var(--link-bg);
+  font-weight: 800;
 }
 
 /* ――――― 共通：イベントアイテム ――――― */
@@ -321,6 +345,7 @@ body:after {/*擬似要素をつくる*/
   border-radius: 50%;
   z-index: 2;
 }
+
 /* 年見出しをクリック可能に見せる */
 .timeline-item.year > h3 {
   cursor: pointer;            /* マウスポインタを指マークに */

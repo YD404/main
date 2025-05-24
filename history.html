@@ -14,32 +14,19 @@
   </header>
 
   <main>
-
-    <section class="default-category">
-      <h2>活動年表</h2>
-      <div class="timeline"></div>
-    </section>
-
+    <!-- 年ごとのセクションをここに動的生成 -->
+    <div id="timeline-container"></div>
   </main>
-
 
   <footer>
     <button id="theme-toggle"></button>
     <p>&copy; 2025 404_YD</p>
   </footer>
+
   <script src="script.js"></script>
-  <script>
-    const toggleButton = document.getElementById("theme-toggle");
-    toggleButton.addEventListener("click", () => {
-      const html = document.documentElement;
-      html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
-    });
-  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="timeline.js"></script>
-
-</body>
-
 </body>
 
 </html>
