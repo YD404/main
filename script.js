@@ -45,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 ///age 年齢計算
+const ageElement = document.getElementById("age");
+if (ageElement) {
   // 生年月日を指定（YYYY, MM, DD形式）
   const birthDate = new Date(2003, 10, 29); // 1990年1月1日生まれの場合
 
@@ -64,7 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 計算した年齢を表示
-  document.getElementById("age").textContent = age;
+  ageElement.textContent = age;
+}
 
 
   
