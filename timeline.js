@@ -25,6 +25,10 @@ fetch('timeline.csv')
         timelineDiv.className = 'timeline';
         section.appendChild(timelineDiv);
 
+        const timelineContentWrapper = document.createElement('div');
+        timelineContentWrapper.className = 'timeline-content';
+        timelineDiv.appendChild(timelineContentWrapper);
+
         // ここが数値ソートされた月ループ
         Object.keys(structure[年])
           .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
@@ -32,18 +36,26 @@ fetch('timeline.csv')
             const monthDiv = document.createElement('div');
             monthDiv.className = 'timeline-item month';
             monthDiv.innerHTML = `<h4>${月}月</h4>`;
-            timelineDiv.appendChild(monthDiv);
+            timelineContentWrapper.appendChild(monthDiv);
 
             structure[年][月].forEach(({ 日, 内容 }) => {
               const dayDiv = document.createElement('div');
               dayDiv.className = 'timeline-item day';
               dayDiv.innerHTML = `<h5>${日}</h5><p>${内容}</p>`;
-              timelineDiv.appendChild(dayDiv);
+              timelineContentWrapper.appendChild(dayDiv);
             });
           });
 
-        // クリックで開閉動作（既存のコード）
-        h2.addEventListener('click', () => section.classList.toggle('open'));
+        // クリックで開閉動作
+        h2.addEventListener('click', () => {
+          section.classList.toggle('open');
+          const timelineContent = section.querySelector('.timeline');
+          if (section.classList.contains('open')) {
+            timelineContent.style.height = timelineContent.scrollHeight + 'px';
+          } else {
+            timelineContent.style.height = '0';
+          }
+        });
 
         container.appendChild(section);
       });

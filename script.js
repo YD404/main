@@ -1,18 +1,43 @@
 /// ライトダークテーマ切り替え
-document.addEventListener("DOMContentLoaded", () => {
-    const themeToggle = document.getElementById("theme-toggle");
-    const currentTheme = localStorage.getItem("theme") || "light";
+function initializeThemeToggle() {
+    const footerContainer = document.getElementById("footer-container");
+    const themeToggle = footerContainer ? footerContainer.querySelector("#theme-toggle") : null;
+    const body = document.getElementById("page-body");
 
-    document.documentElement.setAttribute("data-theme", currentTheme);
-    themeToggle.textContent = currentTheme === "dark" ? "☀️ ライトモード" : "🌙 ダークモード";
+    if (!themeToggle || !body) {
+        console.warn("Theme toggle button or body element not found.");
+        return;
+    }
+
+    // ローカルストレージからテーマを読み込む（デフォルトはダーク）
+    const currentThemeIsLight = localStorage.getItem("theme") === "light";
+
+    // 初期テーマを設定
+    if (currentThemeIsLight) {
+        body.classList.add("theme-light");
+        themeToggle.textContent = "🌙 ダークモード";
+    } else {
+        body.classList.remove("theme-light");
+        themeToggle.textContent = "☀️ ライトモード";
+    }
 
     themeToggle.addEventListener("click", () => {
-        const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-        themeToggle.textContent = newTheme === "dark" ? "☀️ ライトモード" : "🌙 ダークモード";
+        // 現在のテーマを反転
+        const newThemeIsLight = !body.classList.contains("theme-light");
+        
+        if (newThemeIsLight) {
+            body.classList.add("theme-light");
+            localStorage.setItem("theme", "light");
+            themeToggle.textContent = "🌙 ダークモード";
+            window.dispatchEvent(new CustomEvent('themeChanged')); // Add this line
+        } else {
+            body.classList.remove("theme-light");
+            localStorage.setItem("theme", "dark");
+            themeToggle.textContent = "☀️ ライトモード";
+            window.dispatchEvent(new CustomEvent('themeChanged')); // Add this line
+        }
     });
-});
+}
 
 /// フッダー
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,13 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(response => response.text())
       .then(data => {
         document.getElementById("footer-container").innerHTML = data;
+        initializeThemeToggle(); // フッター読み込み後にテーマ切り替えを初期化
       })
       .catch(error => console.error("フッターの読み込みに失敗しました:", error));
   });
   
 
-  /// カード読み込みアニメーション
-  document.addEventListener('DOMContentLoaded', () => {
+/// カード読み込みアニメーション
+document.addEventListener('DOMContentLoaded', () => {
     const historyItems = document.querySelectorAll('.default-category');
   
     historyItems.forEach((item, index) => {
@@ -40,31 +66,23 @@ document.addEventListener("DOMContentLoaded", () => {
             item.style.transform = 'translateY(0)';
         }, delay);
     });
-  });
-
-
+});
 
 ///age 年齢計算
-  // 生年月日を指定（YYYY, MM, DD形式）
-  const birthDate = new Date(2003, 10, 29); // 1990年1月1日生まれの場合
+// この部分はHTMLに `id="age"` を持つ要素がないため、
+// profile.html など、該当するページにのみ記述することを推奨します。
+// もし全ページで必要なら、要素が存在するかチェックする処理を追加します。
+document.addEventListener('DOMContentLoaded', () => {
+    const ageElement = document.getElementById("age");
+    if (ageElement) {
+        const birthDate = new Date(2003, 10, 29);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDifference = today.getMonth() - birthDate.getMonth();
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        ageElement.textContent = age;
+    }
+});
 
-  // 現在の日付を取得
-  const today = new Date();
-
-  // 年齢を計算
-  let age = today.getFullYear() - birthDate.getFullYear();
-
-  // 今年の誕生日を迎えていない場合は年齢を1つ減らす
-  const monthDifference = today.getMonth() - birthDate.getMonth();
-  if (
-    monthDifference < 0 ||
-    (monthDifference === 0 && today.getDate() < birthDate.getDate())
-  ) {
-    age--;
-  }
-
-  // 計算した年齢を表示
-  document.getElementById("age").textContent = age;
-
-
-  
