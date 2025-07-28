@@ -390,3 +390,128 @@ footer {
     margin-left: calc(2rem + var(--space-2));
   }
 }
+/* ─── Task Table ─────────────────────────────── */
+#task-table{
+  width:100%;
+  border-collapse:collapse;
+}
+#task-table th,
+#task-table td{
+  padding:var(--space-3);
+  text-align:left;
+}
+#task-table thead th{
+  font-weight:700;
+  border-bottom:2px solid var(--border-color);
+}
+#task-table tbody tr:nth-child(odd){background:rgba(255,255,255,.03);}
+#task-table tbody tr:hover{background:rgba(255,255,255,.06);}
+
+/* 状態アイコン */
+.state-icon{
+  font-family:"Material Symbols Outlined";
+  font-size:1.6rem;
+  vertical-align:middle;
+}
+.state-pending {color:#9E9E9E;}   /* 未着手 */
+.state-active  {color:#2196F3;}   /* 着手中 */
+.state-complete{color:#4CAF50;}   /* 完了   */
+.state-stalled {color:#FF9800;}   /* 停滞   */
+
+/* 進捗バー */
+.progress{
+  position:relative;
+  height:8px;
+  background:var(--border-color);
+  border-radius:4px;
+  overflow:hidden;
+}
+.progress__fill{
+  height:100%;
+  background:var(--text-color-accent);
+  width:0;
+  transition:width .3s var(--ease);
+}
+.progress__label{
+  position:absolute;
+  top:-1.6em;
+  right:0;
+  font-size:.75rem;
+  color:var(--text-color-secondary);
+}
+/* タイトルテキスト（全行同一色） */
+.title-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color-primary);
+}
+
+/* ―――― キャプションバルーン ―――― */
+/* キャプションツールチップ */
+.caption-tooltip {
+  position: absolute;
+  display: none;
+  max-width: 200px;
+  padding: 8px;
+  background: rgba(0,0,0,0.85);
+  color: #FFF;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  z-index: 1000;
+  pointer-events: none;
+}
+.caption-tooltip.active {
+  display: block;
+}
+.title-text.caution {
+  color: #c7990d; /* 黄色注意 */
+}
+.title-text.warning {
+  color: #f44336; /* 赤色警告 */
+}
+
+/* 警告アイコン */
+.warning-icon {
+  font-family: "Material Symbols Outlined";
+  font-size: 1.2rem;
+  color: #f44336;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+/* 注意アイコン */
+.caution-icon {
+  font-family: "Material Symbols Outlined";
+  font-size: 1.2rem;
+  color: #FFC107;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+/* ―――― 締切日の残日数 ―――― */
+.deadline-cell {
+  display: flex;
+  flex-direction: column;
+}
+.days-remaining {
+  font-size: 0.75rem;
+  color: var(--text-color-secondary);
+  margin-top: 4px;
+}
+
+/* キャプションツールチップ */
+.caption-tooltip {
+  position: absolute;
+  display: none;
+  max-width: 200px;
+  padding: 8px;
+  background: rgba(0,0,0,0.85);
+  color: #FFF;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  z-index: 1000;
+  pointer-events: none;
+}
+.caption-tooltip.active {
+  display: block;
+}

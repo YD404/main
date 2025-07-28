@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>タスクリスト</title>
+
+    <!-- Google Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="page-body">
+
+    <header>
+        <h1>タスクリスト</h1>
+    </header>
+
+    <main>
+        <div class="ui-panel">
+            <table id="task-table">
+                <thead>
+                    <tr>
+                        <th>タスク名</th>
+                        <th>状態</th>
+                        <th>進捗</th>
+                        <th>締め切り</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- キャプション用ツールチップ -->
+        <div id="caption-tooltip" class="caption-tooltip"></div>
+    </main>
+
+    <div id="footer-container"></div>
+    <script src="script.js"></script>
+    <script src="task.js" type="module"></script>
+</body>
+
+</html>
