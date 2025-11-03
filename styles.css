@@ -139,7 +139,7 @@ main {
   background-color: var(--panel-bg-color);
   padding: var(--space-4);
   margin-bottom: var(--space-5);
-  border-radius: 16px; /* Adjusted from 32px for consistency */
+  border-radius: 4px; /* Adjusted from 32px for consistency */
   border: 1px solid var(--border-color);
   min-height: 100px;
 
@@ -171,7 +171,7 @@ main {
 .default-category li {
   background: rgba(0,0,0,0.1); /* Subtle background */
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 4px;
   padding: var(--space-4); /* Uniform padding */
   display: flex;
   align-items: center;
@@ -205,7 +205,7 @@ main {
   background: transparent;
   color: var(--text-color-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 2px;
   padding: var(--space-2) var(--space-4);
   cursor: pointer;
   transition: all var(--fade-time) var(--ease);
@@ -230,7 +230,7 @@ footer {
 .icon {
   object-fit: contain;
   display: block;
-  border-radius: 16px;
+  border-radius: 4px;
 }
 
 /* Standardize icon size and add margin-right */
@@ -295,7 +295,7 @@ footer {
   background-color: var(--panel-bg-color);
   font-weight: 800;
   padding: 2px 4px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .timeline-item {
@@ -329,7 +329,7 @@ footer {
   height: 16px;
   background: var(--bg-color);
   border: 2px solid var(--border-color);
-  border-radius: 50%;
+  border-radius: 12.5%;
   z-index: 2;
 }
 
@@ -423,7 +423,7 @@ footer {
   position:relative;
   height:8px;
   background:var(--border-color);
-  border-radius:4px;
+  border-radius: 2px;
   overflow:hidden;
 }
 .progress__fill{
@@ -455,7 +455,7 @@ footer {
   padding: 8px;
   background: rgba(0,0,0,0.85);
   color: #FFF;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 0.875rem;
   line-height: 1.4;
   z-index: 1000;
@@ -506,7 +506,7 @@ footer {
   padding: 8px;
   background: rgba(0,0,0,0.85);
   color: #FFF;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 0.875rem;
   line-height: 1.4;
   z-index: 1000;
