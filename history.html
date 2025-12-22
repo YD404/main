@@ -4,27 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>年表</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>活動年表</title>
+  <script src="script.js"></script>
 </head>
 
-<body>
+
+<body id="page-body">
   <header>
     <h1>活動年表</h1>
   </header>
 
   <main>
-    <!-- 年ごとのセクションをここに動的生成 -->
-    <div id="timeline-container"></div>
+    <div class="container py-8">
+      <div id="timeline-container"></div>
+    </div>
   </main>
 
-  <footer>
-    <button id="theme-toggle"></button>
-    <p>&copy; 2025 404_YD</p>
-  </footer>
-
-  <script src="script.js"></script>
-
+  <div id="footer-container"></div>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="timeline.js"></script>
 </body>

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -15,8 +15,8 @@
 
     function updateParticleColors() {
         const computedStyle = getComputedStyle(document.body);
-        currentParticleBaseColor = computedStyle.getPropertyValue('--text-color-primary').trim();
-        currentLineBaseColor = computedStyle.getPropertyValue('--line-color').trim();
+        currentParticleBaseColor = computedStyle.getPropertyValue('--fg-1').trim() || '#e8e8e8';
+        currentLineBaseColor = computedStyle.getPropertyValue('--fg-3').trim() || '#808080';
     }
 
     function Particle(x, y) {
@@ -27,7 +27,7 @@
         this.radius = Math.random() * 1.5 + 0.5; // 半径
     }
 
-    Particle.prototype.update = function() {
+    Particle.prototype.update = function () {
         this.x += this.vx;
         this.y += this.vy;
 
@@ -36,13 +36,13 @@
         if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
     };
 
-    Particle.prototype.draw = function() {
+    Particle.prototype.draw = function () {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         // Use currentParticleBaseColor with alpha
         ctx.fillStyle = currentParticleBaseColor.startsWith('rgb') ?
-                        currentParticleBaseColor.replace(')', ', 0.8)') : // For rgb(x,y,z) format
-                        currentParticleBaseColor + 'D9'; // For #hex format (D9 is ~85% opacity)
+            currentParticleBaseColor.replace(')', ', 0.8)') : // For rgb(x,y,z) format
+            currentParticleBaseColor + 'D9'; // For #hex format (D9 is ~85% opacity)
         ctx.fill();
     };
 
@@ -66,8 +66,8 @@
                     // Use currentLineBaseColor with dynamic alpha
                     const alpha = 1 - (dist / maxDistance);
                     ctx.strokeStyle = currentLineBaseColor.startsWith('rgb') ?
-                                      currentLineBaseColor.replace(')', `, ${alpha})`) : // For rgb(x,y,z) format
-                                      currentLineBaseColor + Math.floor(alpha * 255).toString(16).padStart(2, '0'); // For #hex format
+                        currentLineBaseColor.replace(')', `, ${alpha})`) : // For rgb(x,y,z) format
+                        currentLineBaseColor + Math.floor(alpha * 255).toString(16).padStart(2, '0'); // For #hex format
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 }

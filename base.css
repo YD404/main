@@ -1,0 +1,335 @@
+/* 
+  Base CSS - Generic Reusable Styles
+  E-Paper / Archive Terminal Style
+  Default: Dark Theme
+*/
+
+/* ============================================
+   1. Variables (Default = Dark)
+   ============================================ */
+:root {
+    --bg-1: #121212;
+    --bg-2: #1e1e1e;
+    --bg-3: #2a2a2a;
+    --fg-1: #e8e8e8;
+    --fg-2: #b0b0b0;
+    --fg-3: #808080;
+    --border-1: #444444;
+    --border-2: #333333;
+    --accent: #ffffff;
+    --accent-2: #cccccc;
+}
+
+/* Light Theme */
+.theme-light {
+    --bg-1: #f5f5f5;
+    --bg-2: #ffffff;
+    --bg-3: #e8e8e8;
+    --fg-1: #1a1a1a;
+    --fg-2: #4a4a4a;
+    --fg-3: #7a7a7a;
+    --border-1: #b0b0b0;
+    --border-2: #d0d0d0;
+    --accent: #2a2a2a;
+    --accent-2: #505050;
+}
+
+/* ============================================
+   2. Reset & Base
+   ============================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Courier New", Consolas, monospace;
+    background-color: var(--bg-1);
+    color: var(--fg-1);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--fg-2);
+    text-decoration: underline;
+}
+
+::selection {
+    background-color: var(--accent);
+    color: var(--bg-2);
+}
+
+/* ============================================
+   3. Typography
+   ============================================ */
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-1);
+}
+
+h1 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-1);
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+h4 {
+    font-size: 0.875rem;
+    color: var(--fg-2);
+}
+
+p {
+    margin-bottom: 0.75rem;
+}
+
+/* ============================================
+   4. Layout
+   ============================================ */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ============================================
+   5. Components
+   ============================================ */
+.card {
+    background-color: var(--bg-2);
+    border: 2px solid var(--border-1);
+    border-radius: 2px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.card:hover {
+    border-color: var(--accent);
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--border-1);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn {
+    font-family: inherit;
+    background: transparent;
+    color: var(--fg-2);
+    border: 1px solid var(--border-1);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+}
+
+.btn:hover {
+    background: var(--border-1);
+    color: var(--accent);
+}
+
+hr,
+.divider {
+    border: none;
+    border-top: 1px solid var(--border-2);
+    margin: 1.5rem 0;
+}
+
+/* ============================================
+   6. Grid & Flex
+   ============================================ */
+.grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-1 {
+    gap: 0.25rem;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+/* ============================================
+   7. Spacing
+   ============================================ */
+.m-0 {
+    margin: 0;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mt-8 {
+    margin-top: 2rem;
+}
+
+.p-0 {
+    padding: 0;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* ============================================
+   8. Text
+   ============================================ */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.text-muted {
+    color: var(--fg-3);
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+/* ============================================
+   9. Display & Animation
+   ============================================ */
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.transition {
+    transition: all 0.2s ease;
+}
+
+/* ============================================
+   10. Responsive
+   ============================================ */
+@media (max-width: 768px) {
+
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+}

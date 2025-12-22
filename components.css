@@ -1,0 +1,364 @@
+/* 
+  yd404Link - Site-Specific Components
+  Timeline (based on @Tekitou), Task Table, etc.
+*/
+
+/* ============================================
+   Timeline (@Tekitou style)
+   ============================================ */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+@media (min-width: 768px) {
+    .timeline {
+        padding-left: 3rem;
+    }
+}
+
+.timeline-line {
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--border-1);
+}
+
+@media (min-width: 768px) {
+    .timeline-line {
+        left: 1rem;
+    }
+}
+
+.timeline-section {
+    position: relative;
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    color: var(--fg-2);
+    padding-left: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+}
+
+.timeline-section:hover {
+    color: var(--accent);
+}
+
+@media (min-width: 768px) {
+    .timeline-section {
+        font-size: 1rem;
+        padding-left: 2rem;
+    }
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-month {
+    font-size: 0.875rem;
+    color: var(--fg-3);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.timeline-day {
+    margin-bottom: 0.75rem;
+}
+
+.timeline-day h5 {
+    font-size: 0.75rem;
+    color: var(--fg-3);
+    margin-bottom: 0.25rem;
+}
+
+.timeline-day p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.timeline-day p a,
+.card a {
+    text-decoration: underline;
+}
+
+/* ============================================
+   Dot (Circle/Square Marker)
+   ============================================ */
+.dot {
+    position: absolute;
+    border: 1px solid var(--border-1);
+    z-index: 10;
+    background-color: var(--bg-2);
+}
+
+.dot-lg {
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 0;
+}
+
+.dot-sm {
+    left: -4px;
+    top: 1.5rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 0;
+}
+
+.dot-filled {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ============================================
+   Card (Timeline Item Card)
+   ============================================ */
+.card {
+    background-color: var(--bg-2);
+    border: 1px solid var(--border-1);
+    border-radius: 2px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.card:hover {
+    border-color: var(--accent);
+}
+
+.card-lg {
+    max-width: 48rem;
+}
+
+/* ============================================
+   Embed (responsive 16:9)
+   ============================================ */
+.embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border: 1px solid var(--border-1);
+}
+
+.embed iframe,
+.embed video,
+.embed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+}
+
+/* ============================================
+   Label (icon + text)
+   ============================================ */
+.label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--fg-3);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.label img {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    filter: grayscale(100%);
+}
+
+/* ============================================
+   Task Table
+   ============================================ */
+#task-table,
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#task-table th,
+#task-table td,
+.task-table th,
+.task-table td {
+    padding: var(--space-3);
+    text-align: left;
+    border-bottom: 1px solid var(--border-2);
+}
+
+#task-table thead th,
+.task-table thead th {
+    font-weight: 700;
+    border-bottom: 2px solid var(--border-1);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--fg-3);
+}
+
+#task-table tbody tr:nth-child(odd),
+.task-table tbody tr:nth-child(odd) {
+    background: rgba(128, 128, 128, 0.05);
+}
+
+#task-table tbody tr:hover,
+.task-table tbody tr:hover {
+    background: rgba(128, 128, 128, 0.1);
+}
+
+/* UI Panel for task page */
+.ui-panel {
+    width: 100%;
+    max-width: 900px;
+    background-color: var(--bg-2);
+    padding: var(--space-4);
+    border-radius: 4px;
+    border: 2px solid var(--border-1);
+}
+
+/* State Icons */
+.state-icon {
+    font-family: "Material Symbols Outlined";
+    font-size: 1.6rem;
+    vertical-align: middle;
+}
+
+.state-pending {
+    color: #9E9E9E;
+}
+
+.state-active {
+    color: #2196F3;
+}
+
+.state-complete {
+    color: #4CAF50;
+}
+
+.state-stalled {
+    color: #FF9800;
+}
+
+/* Progress Bar */
+.progress {
+    position: relative;
+    height: 8px;
+    background: var(--border-1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress__fill {
+    height: 100%;
+    background: var(--accent);
+    width: 0;
+    transition: width 0.3s var(--ease);
+}
+
+.progress__label {
+    position: absolute;
+    top: -1.6em;
+    right: 0;
+    font-size: 0.75rem;
+    color: var(--fg-3);
+}
+
+/* Title with Status */
+.title-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--fg-1);
+}
+
+.title-text.caution {
+    color: #c7990d;
+}
+
+.title-text.warning {
+    color: #f44336;
+}
+
+.warning-icon,
+.caution-icon {
+    font-family: "Material Symbols Outlined";
+    font-size: 1.2rem;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.warning-icon {
+    color: #f44336;
+}
+
+.caution-icon {
+    color: #FFC107;
+}
+
+/* Deadline */
+.deadline-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.days-remaining {
+    font-size: 0.75rem;
+    color: var(--fg-3);
+    margin-top: 4px;
+}
+
+/* ============================================
+   Tooltip
+   ============================================ */
+.tooltip,
+.caption-tooltip {
+    position: absolute;
+    display: none;
+    max-width: 200px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #FFF;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.tooltip.active,
+.caption-tooltip.active {
+    display: block;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 600px) {
+    .timeline {
+        padding-left: 1.5rem;
+    }
+
+    .timeline-line {
+        left: 0.25rem;
+    }
+
+    .timeline-section {
+        padding-left: 1rem;
+    }
+}

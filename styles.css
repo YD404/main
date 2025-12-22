@@ -1,128 +1,104 @@
 /* 
-  Generated based on cssANDjs.md
-  This file integrates the design specifications from cssANDjs.md 
-  with the existing structure of styles.css.
+  yd404Link - Site Layout & Structure
+  Imports: base.css
 */
 
-/* 1. ROOT DEFINITION (DEFAULT = DARK THEME) */
+/* ============================================
+   Site Variables Extension
+   ============================================ */
 :root {
-  /* Color tokens */
-  --bg-color: #1e0955;
-  --panel-bg-color: #1C1C1C;
-  --border-color: #444444;
-  --text-color-primary: #E0E0E0;
-  --text-color-secondary: #A0A0A0;
-  --text-color-accent: #FFFFFF;
-  --line-color: #333333;
-  /* Gradiation color for body background (from original styles.css) */
-  --bg-color-bottom: #000000; 
-
-  /* Typography */
-  --font-primary: 'Noto Sans JP', sans-serif;
+  --font-main: 'Noto Sans JP', "Courier New", monospace;
   --font-mono: 'Roboto Mono', monospace;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Sizing scale */
-  --space-1: 4px;  /* xs */
-  --space-2: 8px;  /* sm */
-  --space-3: 12px; /* md */
-  --space-4: 16px; /* lg */
-  --space-5: 24px; /* xl */
-
-  /* Transition */
-  --ease: cubic-bezier(0.4, 0.0, 0.2, 1);
-  --fade-time: 0.2s;
+  /* Gradient Background (Dark) */
+  --bg-grad-1: #1e0955;
+  --bg-grad-2: #000000;
 }
 
-/* 1.2 LIGHT THEME VARIABLE OVERRIDE */
-/* Apply .theme-light to body tag to switch */
 .theme-light {
-  --bg-color: #e2daf8;
-  --panel-bg-color: #FFFFFF;
-  --border-color: #B0B0B0;
-  --text-color-primary: #232323;
-  --text-color-secondary: #606060;
-  --text-color-accent: #0A0A0A;
-  --line-color: #999999;
-  /* Gradiation color for body background (from original styles.css) */
-  --bg-color-bottom: #E0E0E0;
+  --bg-grad-1: #f5f5f5;
+  --bg-grad-2: #e0e0e0;
 }
 
-/* BASE STYLE RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* 3. BASE STYLES */
+/* ============================================
+   Body & Background
+   ============================================ */
 body {
-  color: var(--text-color-primary);
-  background-color: var(--bg-color);
-  font-family: var(--font-primary);
-  line-height: 1.6;
-  padding: 0;
+  font-family: var(--font-main);
 }
 
-/* Radial gradient background from original styles.css */
-body:after {
+body::after {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(var(--bg-color-bottom), var(--bg-color));
+  inset: 0;
+  background: radial-gradient(circle at center, var(--bg-grad-2), var(--bg-grad-1));
   z-index: -3;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-color-primary);
-}
-h1 { font-size: 2rem; letter-spacing: 0.05em; color: var(--text-color-accent); }
-h2 { font-size: 1.5rem; letter-spacing: 0.05em; }
-h3 { font-size: 1.25rem; letter-spacing: 0.04em; }
-h4 { font-size: 1.125rem; letter-spacing: 0.03em; color: var(--text-color-secondary); }
-h5 { font-size: 1rem; letter-spacing: 0.02em; color: var(--text-color-secondary); }
-h6 { font-size: 0.875rem; letter-spacing: 0.02em; color: var(--text-color-secondary); }
-
-p {
-  margin-bottom: var(--space-3);
-}
-
-a {
-  color: var(--text-color-accent);
-  text-decoration: none;
-  transition: color var(--fade-time) var(--ease);
-}
-
-a:hover, a:focus {
-  color: var(--text-color-primary);
-  text-decoration: 1px solid var(--text-color-primary);
-}
-
-hr {
-  height: 1px;
-  background-color: var(--line-color);
-  border: none;
-}
-
-ul, ol {
-  padding-left: var(--space-5);
-}
-
-/* HEADER */
+/* ============================================
+   Header / Footer
+   ============================================ */
 header {
-  background-color: var(--panel-bg-color);
-  color: var(--text-color-accent);
-  padding: var(--space-3) 0;
+  background-color: var(--bg-2);
+  border: 2px solid var(--border-1);
+  border-top: none;
+  color: var(--accent);
+  padding: var(--space-3) var(--space-4);
   text-align: center;
   margin-bottom: var(--space-5);
-  border-bottom: 1px solid var(--line-color);
-  border-bottom-left-radius: 4px; /* Kept from original */
-  border-bottom-right-radius: 4px; /* Kept from original */
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* MAIN CONTENT */
+header h1,
+header #page-title {
+  margin: 0;
+  flex: 1;
+}
+
+/* Site Navigation */
+.site-nav {
+  position: absolute;
+  left: var(--space-4);
+}
+
+.nav-home {
+  font-size: 1.5rem;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.nav-home:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  font-size: 0.9em;
+  color: var(--fg-3);
+}
+
+/* ============================================
+   Main Layout
+   ============================================ */
 main {
   display: flex;
   flex-wrap: wrap;
@@ -132,252 +108,197 @@ main {
   padding: var(--space-4);
 }
 
-/* 6.1 UI PANEL (Applied to .default-category) */
+/* ============================================
+   Panel (default-category compatible)
+   ============================================ */
+.panel,
 .default-category {
   width: 100%;
   max-width: 800px;
-  background-color: var(--panel-bg-color);
+  background-color: var(--bg-2);
   padding: var(--space-4);
   margin-bottom: var(--space-5);
-  border-radius: 4px; /* Adjusted from 32px for consistency */
-  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  border: 2px solid var(--border-1);
   min-height: 100px;
-
-  /* Glassmorphism effect from original styles.css */
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
-  background-color: rgba(28, 28, 28, 0.75); /* fallback for dark */
-  
-  .theme-light & {
-    background-color: rgba(255, 255, 255, 0.75); /* fallback for light */
-  }
-
-  @supports not (backdrop-filter: blur()) {
-    background-color: var(--panel-bg-color);
-  }
+  transition: border-color 0.2s ease;
 }
 
-/* LIST CONTAINER */
+.panel:hover,
+.default-category:hover {
+  border-color: var(--accent);
+}
+
+/* ============================================
+   Link List
+   ============================================ */
+.link-list,
 .default-category ul {
   list-style: none;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-4);
   padding: 0;
   margin: 0;
 }
 
-/* LIST ITEM */
+.link-item,
 .default-category li {
-  background: rgba(0,0,0,0.1); /* Subtle background */
-  border: 1px solid var(--border-color);
+  background: var(--bg-3);
+  border: 1px solid var(--border-1);
   border-radius: 4px;
-  padding: var(--space-4); /* Uniform padding */
+  padding: 0;
   display: flex;
-  align-items: center;
-  transition: all var(--fade-time) var(--ease);
+  align-items: stretch;
+  transition: all 0.2s var(--ease);
 }
 
+.link-item:hover,
 .default-category li:hover {
-  outline: 2px solid var(--text-color-accent);
+  outline: 2px solid var(--accent);
   border-color: transparent;
-  background: var(--border-color);
-  font-weight: 700;
+  background: var(--border-1);
 }
 
-.default-category a {
+.link-item a,
+.default-category li a {
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: var(--text-color-primary);
+  color: var(--fg-1);
   width: 100%;
-  height: 100%; /* Make anchor fill the li height */
-  transition: color var(--fade-time) var(--ease);
-}
-.default-category a:hover {
-  color: var(--text-color-accent);
+  padding: var(--space-4);
   text-decoration: none;
 }
 
-/* 6.3 BUTTONS */
-.btn, #theme-toggle {
-  font-family: var(--font-mono);
-  background: transparent;
-  color: var(--text-color-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 2px;
-  padding: var(--space-2) var(--space-4);
-  cursor: pointer;
-  transition: all var(--fade-time) var(--ease);
-  font-weight: bold;
+.link-item a:hover,
+.default-category a:hover {
+  color: var(--accent);
+  text-decoration: none;
 }
 
-.btn:hover, .btn:focus, #theme-toggle:hover, #theme-toggle:focus {
-  background: var(--border-color);
-  color: var(--text-color-accent);
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  margin-top: var(--space-5);
-  padding-bottom: var(--space-5);
-  font-size: 0.9em;
-  color: var(--text-color-secondary);
-}
-
-/* ICONS */
+/* ============================================
+   Icon
+   ============================================ */
 .icon {
   object-fit: contain;
   display: block;
   border-radius: 4px;
 }
 
-/* Standardize icon size and add margin-right */
+.icon-lg,
 .svg-icon,
 .fa-brands,
 .fa-solid {
   width: 2.5rem;
   height: 2.5rem;
-  font-size: 2.5rem; /* Ensure FontAwesome also uses this size */
-  display: flex; /* Use flex to center icon content if needed */
+  font-size: 2.5rem;
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0; /* Prevent icon from shrinking */
-  margin-right: var(--space-3); /* Consistent spacing after icon */
-  color: var(--text-color-secondary); /* Default icon color */
-  transition: color var(--fade-time) var(--ease);
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+  color: var(--fg-3);
+  transition: color 0.2s var(--ease);
 }
 
+.link-item:hover .icon-lg,
+.default-category li:hover .svg-icon,
 .default-category li:hover .fa-brands,
-.default-category li:hover .fa-solid,
-.default-category li:hover .svg-icon {
-  color: var(--text-color-accent);
+.default-category li:hover .fa-solid {
+  color: var(--accent);
 }
 
-.fa-youtube { color: #ff0000; }
-
-/* For text-only spans, add left margin to align with text next to icons */
-.default-category li a > span.text-only {
-  margin-left: calc(2.5rem + var(--space-3)); /* Icon width + icon's right margin */
+.fa-youtube {
+  color: #ff0000;
 }
 
-/* ――――― Timeline Container ――――― */
-.timeline {
-  height: 0; /* 追加 */
-  overflow: hidden; /* 追加 */
-  transition: height 0.4s ease-in-out; /* 追加 */
-  position: relative;
-  margin: var(--space-5) auto;
-  width: 100%;
+/* Text only link alignment */
+.text-only {
+  margin-left: calc(2.5rem + var(--space-3));
 }
 
-/* open クラスが付いたときのスタイル */
-.default-category.open .timeline {
-  height: auto; /* 追加 */
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 30px;
-  width: 2px; /* Thinner line */
-  background: var(--line-color);
-  z-index: 1;
-}
-
-.timeline a {
-  display: inline;
-  white-space: normal;
-  margin: 0;
-  background-color: var(--panel-bg-color);
-  font-weight: 800;
-  padding: 2px 4px;
+/* ============================================
+   Theme Toggle Button  
+   ============================================ */
+#theme-toggle {
+  font-family: var(--font-mono);
+  background: transparent;
+  color: var(--fg-2);
+  border: 1px solid var(--border-1);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
   border-radius: 2px;
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: 1.5rem;
-  padding-left: 60px;
+#theme-toggle:hover {
+  background: var(--border-1);
+  color: var(--accent);
 }
 
-.timeline-item.year > h3 {
-  cursor: pointer;
-  position: relative;
-}
-.timeline-item.year > h3:hover {
-  text-decoration: underline;
-}
-.timeline-item.year > h3::after {
-  content: "▸";
-  margin-left: 0.5em;
-  transition: transform 0.3s ease;
-}
-.timeline-item.year.expanded > h3::after {
-  transform: rotate(90deg);
+/* ============================================
+   Table (Profile etc.)
+   ============================================ */
+.default-category table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-3) 0;
 }
 
-.timeline-item.year::before {
-  content: "";
-  position: absolute;
-  left: 22px;
-  top: 0.5em;
-  width: 16px;
-  height: 16px;
-  background: var(--bg-color);
-  border: 2px solid var(--border-color);
-  border-radius: 12.5%;
-  z-index: 2;
+.default-category th,
+.default-category td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--border-2);
 }
 
-.timeline-item.day > p {
-  margin: 0.25em 0 0;
-  line-height: 1.6;
-  word-break: break-word;
+.default-category th {
+  color: var(--fg-3);
+  font-weight: 400;
+  white-space: nowrap;
 }
 
-/* 8. RESPONSIVE & BREAKPOINTS */
-/* sm: Mobile */
+/* Default text */
+.default-text {
+  color: var(--fg-2);
+  margin-bottom: var(--space-3);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
 @media (max-width: 600px) {
   body {
     padding: 0 var(--space-2);
   }
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.3rem; }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
   main {
     padding: var(--space-3) 0;
     gap: var(--space-4);
   }
+
+  .panel,
   .default-category {
     padding: var(--space-3);
-    margin-bottom: var(--space-4);
   }
+
+  .link-list,
   .default-category ul {
     grid-template-columns: 1fr;
   }
+
+  .link-item,
   .default-category li {
     padding: var(--space-3) var(--space-2);
   }
-  .timeline::before {
-    left: 15px;
-  }
-  .timeline-item,
-  .timeline-item.year {
-    padding-left: 40px;
-  }
-  .timeline-item.year::before {
-    left: 7px;
-  }
-  .timeline-item.month {
-    padding-left: 60px;
-  }
-  .timeline-item.day {
-    padding-left: 80px;
-  }
-  /* Adjust icon size for smaller screens if needed */
+
+  .icon-lg,
   .svg-icon,
   .fa-brands,
   .fa-solid {
@@ -386,132 +307,8 @@ footer {
     font-size: 2rem;
     margin-right: var(--space-2);
   }
-  .default-category li a > span.text-only {
+
+  .text-only {
     margin-left: calc(2rem + var(--space-2));
   }
-}
-/* ─── Task Table ─────────────────────────────── */
-#task-table{
-  width:100%;
-  border-collapse:collapse;
-}
-#task-table th,
-#task-table td{
-  padding:var(--space-3);
-  text-align:left;
-}
-#task-table thead th{
-  font-weight:700;
-  border-bottom:2px solid var(--border-color);
-}
-#task-table tbody tr:nth-child(odd){background:rgba(255,255,255,.03);}
-#task-table tbody tr:hover{background:rgba(255,255,255,.06);}
-
-/* 状態アイコン */
-.state-icon{
-  font-family:"Material Symbols Outlined";
-  font-size:1.6rem;
-  vertical-align:middle;
-}
-.state-pending {color:#9E9E9E;}   /* 未着手 */
-.state-active  {color:#2196F3;}   /* 着手中 */
-.state-complete{color:#4CAF50;}   /* 完了   */
-.state-stalled {color:#FF9800;}   /* 停滞   */
-
-/* 進捗バー */
-.progress{
-  position:relative;
-  height:8px;
-  background:var(--border-color);
-  border-radius: 2px;
-  overflow:hidden;
-}
-.progress__fill{
-  height:100%;
-  background:var(--text-color-accent);
-  width:0;
-  transition:width .3s var(--ease);
-}
-.progress__label{
-  position:absolute;
-  top:-1.6em;
-  right:0;
-  font-size:.75rem;
-  color:var(--text-color-secondary);
-}
-/* タイトルテキスト（全行同一色） */
-.title-text {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-color-primary);
-}
-
-/* ―――― キャプションバルーン ―――― */
-/* キャプションツールチップ */
-.caption-tooltip {
-  position: absolute;
-  display: none;
-  max-width: 200px;
-  padding: 8px;
-  background: rgba(0,0,0,0.85);
-  color: #FFF;
-  border-radius: 2px;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  z-index: 1000;
-  pointer-events: none;
-}
-.caption-tooltip.active {
-  display: block;
-}
-.title-text.caution {
-  color: #c7990d; /* 黄色注意 */
-}
-.title-text.warning {
-  color: #f44336; /* 赤色警告 */
-}
-
-/* 警告アイコン */
-.warning-icon {
-  font-family: "Material Symbols Outlined";
-  font-size: 1.2rem;
-  color: #f44336;
-  vertical-align: middle;
-  margin-left: 4px;
-}
-/* 注意アイコン */
-.caution-icon {
-  font-family: "Material Symbols Outlined";
-  font-size: 1.2rem;
-  color: #FFC107;
-  vertical-align: middle;
-  margin-left: 4px;
-}
-/* ―――― 締切日の残日数 ―――― */
-.deadline-cell {
-  display: flex;
-  flex-direction: column;
-}
-.days-remaining {
-  font-size: 0.75rem;
-  color: var(--text-color-secondary);
-  margin-top: 4px;
-}
-
-/* キャプションツールチップ */
-.caption-tooltip {
-  position: absolute;
-  display: none;
-  max-width: 200px;
-  padding: 8px;
-  background: rgba(0,0,0,0.85);
-  color: #FFF;
-  border-radius: 2px;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  z-index: 1000;
-  pointer-events: none;
-}
-.caption-tooltip.active {
-  display: block;
 }
