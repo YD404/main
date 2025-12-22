@@ -139,3 +139,26 @@ document.addEventListener('DOMContentLoaded', () => {
         ageElement.textContent = age;
     }
 });
+
+/// カラーコードコピー機能
+document.addEventListener('DOMContentLoaded', () => {
+    const colorCodes = document.querySelectorAll('.color-hex, .color-rgb');
+
+    colorCodes.forEach(el => {
+        el.addEventListener('click', async () => {
+            const text = el.textContent;
+            try {
+                await navigator.clipboard.writeText(text);
+                el.classList.add('copied');
+                const originalText = el.textContent;
+                el.textContent = 'Copied!';
+                setTimeout(() => {
+                    el.classList.remove('copied');
+                    el.textContent = originalText;
+                }, 1000);
+            } catch (err) {
+                console.error('コピーに失敗しました:', err);
+            }
+        });
+    });
+});

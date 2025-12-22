@@ -22,8 +22,8 @@
 }
 
 .theme-light {
-  --bg-grad-1: #f5f5f5;
-  --bg-grad-2: #e0e0e0;
+  --bg-grad-1: #e2daf8;
+  --bg-grad-2: #f0ebfc;
 }
 
 /* ============================================
@@ -182,9 +182,12 @@ main {
    Icon
    ============================================ */
 .icon {
-  object-fit: contain;
+  object-fit: cover;
   display: block;
-  border-radius: 4px;
+  width: 200px;
+  height: 200px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
 }
 
 .icon-lg,
@@ -264,6 +267,64 @@ main {
 .default-text {
   color: var(--fg-2);
   margin-bottom: var(--space-3);
+}
+
+/* ============================================
+   Color Palette
+   ============================================ */
+.color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+}
+
+.color-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--bg-3);
+  border: 1px solid var(--border-1);
+  border-radius: 4px;
+  padding: var(--space-2) var(--space-3);
+}
+
+.color-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid var(--border-2);
+  flex-shrink: 0;
+}
+
+.color-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.color-hex,
+.color-rgb {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--fg-2);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 2px;
+  transition: all 0.2s var(--ease);
+  user-select: all;
+}
+
+.color-hex:hover,
+.color-rgb:hover {
+  background: var(--border-1);
+  color: var(--accent);
+}
+
+.color-hex.copied,
+.color-rgb.copied {
+  background: var(--accent);
+  color: var(--bg-1);
 }
 
 /* ============================================
