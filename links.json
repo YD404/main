@@ -1,0 +1,46 @@
+[
+  {
+    "category": "投稿プラットフォーム",
+    "links": [
+      { "name": "ニコニコ動画", "url": "https://nicovideo.jp/user/89677300", "icon": "niconico" },
+      { "name": "YouTube", "url": "https://www.youtube.com/channel/UCwyqDlfoLBua0M6gyHvDttA", "icon": "fa-youtube" },
+      { "name": "bilibili", "url": "https://space.bilibili.com/3493112060053794", "icon": "fa-bilibili", "note": "※投稿停止中" },
+      { "name": "BOOTH", "url": "https://404yd.booth.pm/", "icon": "booth" },
+      { "name": "GitHub", "url": "https://github.com/YD404", "icon": "fa-github" },
+      { "name": "ニコニ・コモンズ", "url": "https://commons.nicovideo.jp/users/89677300", "icon": null }
+    ]
+  },
+  {
+    "category": "SNS",
+    "links": [
+      { "name": "エックス", "url": "https://x.com/404_YD", "icon": "fa-x-twitter" },
+      { "name": "Instagram", "url": "https://www.instagram.com/404_yd/", "icon": "fa-instagram" },
+      { "name": "Pinterest", "url": "https://www.pinterest.com/yd_404", "icon": "fa-pinterest" },
+      { "name": "note", "url": "https://note.com/404_yd", "icon": "note" },
+      { "name": "TikTok", "url": "https://www.tiktok.com/@404_yd", "icon": "fa-tiktok" },
+      { "name": "annict", "url": "https://annict.com/@404_YD/", "icon": "fa-a", "iconType": "solid" },
+      { "name": "Filmarks", "url": "https://filmarks.com/users/404_YD", "icon": "fa-film", "iconType": "solid" },
+      { "name": "Booklog", "url": "https://booklog.jp/users/yd404", "icon": "fa-book", "iconType": "solid" },
+      { "name": "LiveFans", "url": "https://www.livefans.jp/users/prf/720c1c7573666db7", "icon": "fa-hands-clapping", "iconType": "solid" }
+    ]
+  },
+  {
+    "category": "関連サイト",
+    "links": [
+      { "name": "カニ娘 - 蟹ヶ谷ムサコ公式", "url": "https://yd404.github.io/kani/index.html", "icon": null },
+      { "name": "404ポータル - Googleサイト", "url": "https://sites.google.com/view/404notfound-portal", "icon": null },
+      { "name": "月読村", "url": "https://yd404.github.io/tsukuyomi/", "icon": null },
+      { "name": "#マルチゆかり", "url": "https://sedrftgyhujikolp1121.wixsite.com/multi-yukari", "icon": null },
+      { "name": "創作団体ARGO", "url": "https://studio-argo.com", "icon": null },
+      { "name": "スケジェネ", "url": "https://yd404.github.io/Kouban/", "icon": null },
+      { "name": "スクジェネ", "url": "https://yd404.github.io/ScriptSeet/", "icon": null }
+    ]
+  },
+  {
+    "category": "お問い合わせ",
+    "links": [
+      { "name": "Googleフォーム", "url": "https://x.gd/404_DM", "icon": null },
+      { "name": "Instagram - DM", "url": "https://www.instagram.com/404_yd/", "icon": null }
+    ]
+  }
+]
